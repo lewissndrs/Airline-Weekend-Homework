@@ -1,6 +1,7 @@
 import sun.invoke.empty.Empty;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Flight {
 
@@ -9,9 +10,9 @@ public class Flight {
     private String flightNumber;
     private String destination;
     private String origin;
-    private String departureTime;
+    private Date departureTime;
 
-    public Flight(Plane plane, String flightNumber, String destination, String origin, String departureTime) {
+    public Flight(Plane plane, String flightNumber, String destination, String origin, Date departureTime) {
         this.passengers = new ArrayList<Passenger>();
         this.plane = plane;
         this.flightNumber = flightNumber;
@@ -36,7 +37,7 @@ public class Flight {
         return origin;
     }
 
-    public String getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 
@@ -48,6 +49,7 @@ public class Flight {
     public void bookPassenger(Passenger passenger){
         if (getEmptySeats() > 1) {
             passengers.add(passenger);
+            passenger.setFlight(this.flightNumber);
         }
     }
 }

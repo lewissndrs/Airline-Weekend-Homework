@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class FlightManagerTest {
@@ -9,12 +11,14 @@ public class FlightManagerTest {
     private Flight flight;
     private Plane plane;
     private Passenger passenger1;
+    private Date date1;
 
     @Before
     public void before(){
+        date1 = new Date(2020/10/01);
         passenger1 = new Passenger("Floyd",3);
         plane = new Plane(PlaneType.AIRBUSA220);
-        flight = new Flight(plane,"BA4200","AMS","GLA","16:20");
+        flight = new Flight(plane,"BA4200","AMS","GLA",date1);
         flightManager = new FlightManager(flight);
     }
 

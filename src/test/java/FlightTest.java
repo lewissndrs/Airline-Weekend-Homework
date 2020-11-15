@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class FlightTest {
@@ -9,11 +11,14 @@ public class FlightTest {
     private Plane plane;
     private Passenger passenger1;
     private Passenger passenger2;
+    private Date date1;
 
     @Before
     public void before(){
+        date1 = new Date(2020/10/10);
+        passenger1 = new Passenger("Ted",2);
         plane = new Plane(PlaneType.AIRBUSA220);
-        flight = new Flight(plane,"GLA2020","GLA","AMS","16:45");
+        flight = new Flight(plane,"GLA2020","GLA","AMS",date1);
     }
 
     @Test
@@ -38,7 +43,7 @@ public class FlightTest {
 
     @Test
     public void hasDepartureTime(){
-        assertEquals("16:45",flight.getDepartureTime());
+        assertEquals(date1,flight.getDepartureTime());
     }
 
     @Test
@@ -50,5 +55,11 @@ public class FlightTest {
     public void canBookPassenger(){
         flight.bookPassenger(passenger1);
         assertEquals(107,flight.getEmptySeats());
+    }
+
+    @Test
+    public void PassengerHasFlightProperty(){
+        flight.bookPassenger(passenger1);
+        assertEquals("GLA2020",passenger1.getFlight());
     }
 }
